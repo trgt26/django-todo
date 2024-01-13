@@ -1,0 +1,28 @@
+
+<div class="">
+    
+    <ul class="list-group">
+        {% for p in data2 %}
+    
+        <li class="list-group-item">
+        {% if p.is_completed == 0 %}
+        <a href="{% url 'todo:todo_update' p.id %}" class="text-dark cus-link">
+            <i class="fa-regular fa-square"></i>
+        </a>
+        {% else %}
+        <a href="{% url 'todo:todo_update' p.id%}" class="text-dark">
+            <i class="fas fa-check-square"></i> 
+
+        </a>
+        {% endif %}    
+    
+        {{ p.title }}
+        <a href="{% url 'todo:todo_delete' p.id %}" class = "">
+            <p class="fa-solid fa-trash cus-trash text-danger"></p>
+        </a>
+        </li>
+            
+        {% endfor %}
+    </ul>
+</div>
+
