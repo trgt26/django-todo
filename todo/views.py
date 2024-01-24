@@ -7,10 +7,9 @@ from .models import all_todo
 # Create your views here.
 
 def home(request) :
-    x = all_todo.objects.order_by('-created_at')
-    # print(x)
+    todos = all_todo.objects.order_by('-created_at')
   
-    data = {'data2': x}
+    data = {'data': todos}
     return render(request, 'home.html', context= data)
 
 def todo_create(request):
@@ -37,3 +36,19 @@ def todo_update(request, todo_id):
     todo_obj.save()
     
     return redirect('todo:home')
+
+def todo_edit(request, todo_id):
+    todo = all_todo.objects.get(id= todo_id)
+    print(todo.title)
+    data = {
+        "title":todo.title,
+        "todo_id":todo_id
+            }
+    return render(request, 'edit.html', context=data)
+
+def todo_edit_save(request, todo_id) :
+    todo = all_todo.objects.get(id=todo_id)
+    todo.title = request.POST['todo-title']
+    todo.save()
+    return redirect('todo:home')
+

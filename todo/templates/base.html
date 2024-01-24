@@ -27,18 +27,15 @@
     </head>
 
     <body>
-        <header>
-            <!-- place navbar here -->
-        </header>
-        <main>
-            
-            {% block content%}
-            {% endblock %}
+        <div class="container-sm !justify !spacing offset-md-3 col-md-6 offset-lg-3 col-lg-5">
+            <h1 class="text-center mt-3"> Django Todo</h1>
+        
 
-        </main>
-        <footer>
-            <!-- place footer here -->
-        </footer>
+            
+        {% block content%}
+        {% endblock %}
+        </div>
+
         <!-- Bootstrap JavaScript Libraries -->
         <script
             src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"

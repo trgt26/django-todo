@@ -2,25 +2,55 @@
 <div class="">
     
     <ul class="list-group">
-        {% for p in data2 %}
+        {% for todo in data %}
     
-        <li class="list-group-item">
-        {% if p.is_completed == 0 %}
-        <a href="{% url 'todo:todo_update' p.id %}" class="text-dark cus-link">
-            <i class="fa-regular fa-square"></i>
-        </a>
-        {% else %}
-        <a href="{% url 'todo:todo_update' p.id%}" class="text-dark">
-            <i class="fas fa-check-square"></i> 
+            <li class="list-group-item text-white {% if todo.is_completed == 1 %} bg-dark
+            {% else %} bg-secondary
+            {% endif %}            
+            ">
+                <div class="d-inline-flex justify-content-between col-12 {% if todo.is_completed == 1 %} cus-line-through {% endif %}">
+                    <div>
 
-        </a>
-        {% endif %}    
+                    <!-- UPDATE BUTTON -->
+                    
+                    {% if todo.is_completed == 0 %}
+                    <a href="{% url 'todo:todo_update' todo.id %}" class=" cus-link">
+                        <i class="fa-regular fa-square"></i>
+                    </a>
+                    {% else %}
+                    <a href="{% url 'todo:todo_update' todo.id %}" class="cus-link">
+                        <i class="fas fa-check-square"></i> 
     
-        {{ p.title }}
-        <a href="{% url 'todo:todo_delete' p.id %}" class = "">
-            <p class="fa-solid fa-trash cus-trash text-danger"></p>
-        </a>
-        </li>
+                    </a>
+                    {% endif %}    
+                
+                    <!-- TODO TITLE -->
+
+                    {{ todo.title }}
+
+                    </div>
+                    <div class="d-flex justify-content-between col-1">
+                        
+                        <!-- EDIT BUTTON -->
+                        
+                        <div class="d-inline">
+                            <a href="{% url 'todo:todo_edit' todo.id %}">
+                                <p class="fas fa-edit text-white"></p>
+                            </a>
+                        </div>
+                        
+                        <!-- DELETE BUTTON -->
+
+                        <div class="d-inline">
+                            <a href="{% url 'todo:todo_delete' todo.id %}" class = "">
+                                <p class="fa-solid fa-trash  text-danger"></p>
+                            </a>
+                        </div>
+    
+                    </div>
+
+                </div>
+            </li>
             
         {% endfor %}
     </ul>
